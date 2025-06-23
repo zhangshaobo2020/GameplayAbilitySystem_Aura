@@ -48,6 +48,6 @@ private:
 	UFUNCTION()
 	void CursorTrace();
 
-	IEnemyInterface* LastActor;
-	IEnemyInterface* ThisActor;
+	IEnemyInterface* LastActor = nullptr;
+	IEnemyInterface* ThisActor = nullptr;
 };
