@@ -23,6 +23,7 @@ void AAuraEnemy::HighlightActor()
 void AAuraEnemy::UnHighlightActor()
 {
 	bHighlighted = false;
+	// 禁用CustomDepth
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
 }
