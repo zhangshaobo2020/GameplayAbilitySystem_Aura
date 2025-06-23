@@ -12,6 +12,7 @@ AAuraEnemy::AAuraEnemy()
 
 void AAuraEnemy::HighlightActor()
 {
+	// 通过使用CustomDepth为网格体添加轮廓
 	bHighlighted = true;
 	GetMesh()->SetRenderCustomDepth(true);
 	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
