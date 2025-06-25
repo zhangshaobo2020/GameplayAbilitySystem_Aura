@@ -7,6 +7,7 @@
 #include "AttributeSet.h"
 #include "AuraAttributeSet.generated.h"
 
+// 使用GAS内置的宏为AttributeSet提供Getter,Setter,Initter函数
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
 	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \

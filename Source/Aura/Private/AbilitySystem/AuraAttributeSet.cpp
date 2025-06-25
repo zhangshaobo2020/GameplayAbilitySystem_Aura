@@ -8,6 +8,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
+	// 初始化属性,这里需要使用Init函数,在构造函数中使用Set函数为时过早
 	InitHealth(100.0f);
 	InitMaxHealth(100.0f);
 
