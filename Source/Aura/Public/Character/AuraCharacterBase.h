@@ -47,4 +47,5 @@ protected:
 	TObjectPtr<UAttributeSet> AttributeSet;
 	// GAS End
 	
+	virtual void InitAbilityActorInfo();
 };
