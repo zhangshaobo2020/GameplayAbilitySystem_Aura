@@ -33,8 +33,7 @@ protected:
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
 	
-private:
-	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level)
+	UPROPERTY(VisibleAnywhere, ReplicatedUsing = OnRep_Level, BlueprintReadWrite)
 	int32 Level = 1;
 
 	UFUNCTION()

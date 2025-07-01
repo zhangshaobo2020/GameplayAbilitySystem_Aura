@@ -11,10 +11,7 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	// 初始化属性,这里需要使用Init函数,在构造函数中使用Set函数为时过早
-	InitHealth(50.0f);
 
-	InitMana(10.0f);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
