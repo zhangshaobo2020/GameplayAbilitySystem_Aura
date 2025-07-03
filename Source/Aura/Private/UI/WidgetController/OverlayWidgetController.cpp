@@ -8,8 +8,6 @@
 
 void UOverlayWidgetController::BroadcastInitialValues()
 {
-	Super::BroadcastInitialValues();
-
 	// 从AttributeSet获取角色属性并进行广播
 	const UAuraAttributeSet* AuraAttributeSet = Cast<UAuraAttributeSet>(AttributeSet);
 
@@ -22,8 +20,6 @@ void UOverlayWidgetController::BroadcastInitialValues()
 
 void UOverlayWidgetController::BindCallbacksToDependencies()
 {
-	Super::BindCallbacksToDependencies();
-
 	const UAuraAttributeSet* AuraAttributeSet = Cast<UAuraAttributeSet>(AttributeSet);
 	// 将GAS自带的Attribute变化事件回调，与事件委托进行绑定，以便在触发时广播到蓝图
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AuraAttributeSet->GetHealthAttribute()).AddLambda(
