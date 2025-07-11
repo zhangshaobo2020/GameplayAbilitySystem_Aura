@@ -30,6 +30,8 @@ public:
 
 	virtual FVector GetCombatSocketLocation() override;
 
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -73,4 +75,7 @@ protected:
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 
 	void AddCharacterAbilities();
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TObjectPtr<UAnimMontage> HitReactMontage;
 };
