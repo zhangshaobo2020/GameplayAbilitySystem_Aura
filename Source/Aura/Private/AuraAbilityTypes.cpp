@@ -3,7 +3,7 @@
 
 UScriptStruct* FAuraGameplayEffectContext::GetScriptStruct() const
 {
-	return GetScriptStruct();
+	return FGameplayEffectContext::StaticStruct();
 }
 
 bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* Map, bool& bOutSuccess)

@@ -15,7 +15,7 @@
 // Sets default values
 AAuraProjectile::AAuraProjectile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	bReplicates = true;
 
@@ -45,20 +45,24 @@ void AAuraProjectile::BeginPlay()
 }
 
 void AAuraProjectile::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                           UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
+                                           const FHitResult& SweepResult)
 {
-	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
-	LoopingSoundComponent->Stop();
+	if (DamageEffectSpecHandle.Data.IsValid() && DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser() ==
+		OtherActor) return;
+	if (!bHit)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
+		if (LoopingSoundComponent) LoopingSoundComponent->Stop();
+	}
 	if (HasAuthority())
 	{
-
 		UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(OtherActor);
 		if (TargetASC)
 		{
 			TargetASC->ApplyGameplayEffectSpecToSelf(*DamageEffectSpecHandle.Data.Get());
 		}
-		
 		Destroy();
 	}
 	else
@@ -73,7 +77,7 @@ void AAuraProjectile::Destroyed()
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation());
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
-		LoopingSoundComponent->Stop();
+		if (LoopingSoundComponent) LoopingSoundComponent->Stop();
 	}
 	Super::Destroyed();
 }
@@ -82,6 +86,4 @@ void AAuraProjectile::Destroyed()
 void AAuraProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
-
